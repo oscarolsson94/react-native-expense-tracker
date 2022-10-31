@@ -1,2 +1,2 @@
 export const getFormattedDate = (date) =>
-  `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;

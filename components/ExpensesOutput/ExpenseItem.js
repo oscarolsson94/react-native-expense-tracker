@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   amountContainer: {
+    minWidth: 80,
     paddingHorizontal: 12,
     paddingVertical: 4,
     backgroundColor: "white",
