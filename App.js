@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ManageExpense } from "./screens/ManageExpense";
@@ -13,6 +13,7 @@ const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 const ExpensesOverview = () => {
+  const { navigate } = useNavigation();
   return (
     <BottomTabs.Navigator
       screenOptions={{
@@ -25,7 +26,9 @@ const ExpensesOverview = () => {
             color={tintColor}
             size={24}
             icon="add"
-            onPress={() => {}}
+            onPress={() => {
+              navigate("ManageExpense");
+            }}
           />
         ),
       }}
