@@ -8,7 +8,7 @@ export const ExpensesSummary = ({ expenses, periodName }) => {
   return (
     <View>
       <Text>{periodName}</Text>
-      <Text>$177.95</Text>
+      <Text>${expensesSum.toFixed(2)}</Text>
     </View>
   );
 };
