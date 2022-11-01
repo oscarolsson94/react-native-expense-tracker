@@ -3,11 +3,13 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import { GlobalStyles } from "../../constants/styles";
 import { getFormattedDate } from "../../utils/date";
 
-export const ExpenseItem = ({ description, date, amount }) => {
+export const ExpenseItem = ({ id, description, date, amount }) => {
   const { navigate } = useNavigation();
 
   const expensePressHandler = () => {
-    navigate("ManageExpense");
+    navigate("ManageExpense", {
+      expenseId: id,
+    });
   };
 
   return (
