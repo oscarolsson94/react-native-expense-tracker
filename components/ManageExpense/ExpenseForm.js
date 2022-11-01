@@ -14,10 +14,18 @@ export const ExpenseForm = ({ onCancel, onSubmit, submitButtonLabel }) => {
   };
 
   /*   const handleChange = (event) => {
-    setContactInfo({ ...contactInfo, [event.target.name]: event.target.value });
+    setInputvalues({ ...inputValues, [event.target.name]: event.target.value });
   }; */
 
-  const submitHandler = () => {};
+  const submitHandler = () => {
+    const expenseData = {
+      amount: +inputValues.amount,
+      date: new Date(inputValues.date),
+      description: inputValues.description,
+    };
+
+    onSubmit(expenseData);
+  };
 
   return (
     <View style={styles.form}>
