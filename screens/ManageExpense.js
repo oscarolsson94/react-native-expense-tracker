@@ -6,12 +6,16 @@ import { GlobalStyles } from "../constants/styles";
 import { ExpensesContext } from "../store/expenses-context";
 
 export const ManageExpense = ({ route, navigation }) => {
-  const { deleteExpense, updateExpense, addExpense } =
+  const { expenses, deleteExpense, updateExpense, addExpense } =
     useContext(ExpensesContext);
 
   const editedExpenseId = route.params?.expenseId;
 
   const isEditing = !!editedExpenseId;
+
+  const selectedExpense = expenses.find(
+    (expense) => expense.id === editedExpenseId
+  );
 
   const deleteExpenseHandler = () => {
     deleteExpense(editedExpenseId);
@@ -44,6 +48,7 @@ export const ManageExpense = ({ route, navigation }) => {
         onCancel={cancelHandler}
         onSubmit={confirmHandler}
         submitButtonLabel={isEditing ? "Update" : "Add"}
+        defaultValues={selectedExpense}
       />
       {isEditing && (
         <View style={styles.deleteContainer}>
