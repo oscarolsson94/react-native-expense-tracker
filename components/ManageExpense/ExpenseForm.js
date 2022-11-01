@@ -1,9 +1,12 @@
 import { View, Text } from "react-native";
+import { Input } from "./Input";
 
 export const ExpenseForm = () => {
   return (
     <View>
-      <Text>ExpenseForm</Text>
+      <Input label="Amount" />
+      <Input label="Date" />
+      <Input label="Description" />
     </View>
   );
 };
