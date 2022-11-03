@@ -7,7 +7,7 @@ import { fetchExpenses } from "../utils/http";
 export const RecentExpenses = () => {
   const { expenses } = useContext(ExpensesContext);
 
-  const recentExpenses = expenses.filter((expense) => {
+  const recentExpenses = fetchedExpenses.filter((expense) => {
     const today = new Date();
     const date7DaysAgo = getDateMinusDays(today, 7);
 
