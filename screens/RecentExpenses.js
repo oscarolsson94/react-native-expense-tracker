@@ -15,7 +15,11 @@ export const RecentExpenses = () => {
   });
 
   useEffect(() => {
-    fetchExpenses();
+    const getExpenses = async () => {
+      const expenses = await fetchExpenses();
+    };
+
+    getExpenses();
   }, []);
 
   return (
