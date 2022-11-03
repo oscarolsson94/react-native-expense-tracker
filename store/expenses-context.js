@@ -35,7 +35,7 @@ const expensesReducer = (state, action) => {
 };
 
 export const ExpensesContextProvider = ({ children }) => {
-  const [expensesState, dispatch] = useReducer(expensesReducer, DUMMY_EXPENSES);
+  const [expensesState, dispatch] = useReducer(expensesReducer, []);
 
   const addExpense = (expenseData) => {
     dispatch({ type: "ADD", payload: expenseData });

@@ -5,9 +5,9 @@ import { getDateMinusDays } from "../utils/date";
 import { fetchExpenses } from "../utils/http";
 
 export const RecentExpenses = () => {
-  const { expenses } = useContext(ExpensesContext);
+  const { expenses, setExpenses } = useContext(ExpensesContext);
 
-  const recentExpenses = fetchedExpenses.filter((expense) => {
+  const recentExpenses = expenses.filter((expense) => {
     const today = new Date();
     const date7DaysAgo = getDateMinusDays(today, 7);
 
@@ -17,6 +17,7 @@ export const RecentExpenses = () => {
   useEffect(() => {
     const getExpenses = async () => {
       const expenses = await fetchExpenses();
+      setExpenses(expenses);
     };
 
     getExpenses();
