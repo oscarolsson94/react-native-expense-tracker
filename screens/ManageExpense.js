@@ -1,12 +1,15 @@
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { ExpenseForm } from "../components/ManageExpense/ExpenseForm";
 import { IconButton } from "../components/UI/IconButton";
+import { LoadingOverlay } from "../components/UI/LoadingOverlay";
 import { GlobalStyles } from "../constants/styles";
 import { ExpensesContext } from "../store/expenses-context";
 import { putExpense, removeExpense, storeExpense } from "../utils/http";
 
 export const ManageExpense = ({ route, navigation }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { expenses, deleteExpense, updateExpense, addExpense } =
     useContext(ExpensesContext);
 
@@ -19,6 +22,7 @@ export const ManageExpense = ({ route, navigation }) => {
   );
 
   const deleteExpenseHandler = async () => {
+    setIsSubmitting(true);
     await removeExpense(editedExpenseId);
     deleteExpense(editedExpenseId);
     navigation.goBack();
@@ -29,6 +33,7 @@ export const ManageExpense = ({ route, navigation }) => {
   };
 
   const confirmHandler = async (expenseData) => {
+    setIsSubmitting(true);
     if (isEditing) {
       await putExpense(editedExpenseId, expenseData);
       updateExpense(editedExpenseId, expenseData);
@@ -45,6 +50,8 @@ export const ManageExpense = ({ route, navigation }) => {
       title: isEditing ? "Edit Expense" : "Add Expense",
     });
   }, [isEditing, navigation]);
+
+  if (isSubmitting) return <LoadingOverlay />;
 
   return (
     <View style={styles.container}>
